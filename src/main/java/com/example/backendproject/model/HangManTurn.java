@@ -5,6 +5,7 @@ public class HangManTurn {
 	private boolean finished;
 	private Player playerGuesser;
 	private Player playerGiver;
+	private String secreteWord;
 	private boolean isHangedMan;
 
 	public int getId_turn() {
@@ -45,5 +46,13 @@ public class HangManTurn {
 
 	public void setHangedMan(boolean hangedMan) {
 		isHangedMan = hangedMan;
+	}
+
+	public String getSecreteWord() {
+		return secreteWord;
+	}
+
+	public void setSecreteWord(String secreteWord) {
+		this.secreteWord = secreteWord;
 	}
 }
