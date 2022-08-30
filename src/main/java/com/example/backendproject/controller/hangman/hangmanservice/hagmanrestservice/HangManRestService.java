@@ -1,4 +1,4 @@
-package com.example.backendproject.hagmanrestservice;
+package com.example.backendproject.controller.hangman.hangmanservice.hagmanrestservice;
 
 import com.example.backendproject.controller.hangman.HangedManController;
 import com.example.backendproject.controller.hangman.HangManTurnController;

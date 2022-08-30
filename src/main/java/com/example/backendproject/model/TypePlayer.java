@@ -9,8 +9,6 @@ public class TypePlayer {
 	public static List<TypePlayer> listOfTypesPlayer = new ArrayList<>();
 
 
-
-
 	public int getId() {
 		return id;
 	}

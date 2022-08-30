@@ -1,5 +1,6 @@
 package com.example.backendproject.controller.hangman.hangmanservice;
 
+import com.example.backendproject.controller.statisticservice.StatisticService;
 import com.example.backendproject.model.HangManTurn;
 import com.example.backendproject.model.Player;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class HangManTurnService {
 	HangManTurn turn;
+	StatisticService statisticService;
 	public static List<HangManTurn> turnList = new ArrayList<>();
 	public HangManTurnService(Player playerGiver, Player playerGuesser, String SecretWord) {
 		turn = new HangManTurn();
@@ -32,6 +34,10 @@ public class HangManTurnService {
 		turn  = getTurnById(turnId);
 		turn.setFinished(finished);
 		turn.setHangedMan(hangedMan);
+		HangManTurn result = new HangManTurn();
+		result = turnList.stream().filter(t -> t.getId_turn() == turnId).findFirst().get();
+		statisticService = new StatisticService();
+		statisticService.saveStatistic(result);
 	}
 
 }
