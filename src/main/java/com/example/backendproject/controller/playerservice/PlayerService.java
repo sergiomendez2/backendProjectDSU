@@ -50,7 +50,6 @@ public class PlayerService {
 
   }
 
-
 	public Player getPlayerByName(String name) {
 		Player player = new Player();
 		player = listOfPlayers.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findFirst().get();

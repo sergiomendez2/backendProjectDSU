@@ -4,12 +4,13 @@ import com.example.backendproject.model.HangManTurn;
 import com.example.backendproject.model.Player;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class HangManTurnService {
 	HangManTurn turn;
-	public static List<HangManTurn> turnList;
+	public static List<HangManTurn> turnList = new ArrayList<>();
 	public HangManTurnService(Player playerGiver, Player playerGuesser, String SecretWord) {
 		turn = new HangManTurn();
 		int id = turnList.size() + 1;

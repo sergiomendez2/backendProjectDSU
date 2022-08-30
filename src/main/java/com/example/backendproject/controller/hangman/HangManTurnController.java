@@ -24,6 +24,7 @@ public class HangManTurnController {
 		Player playerGiver = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGiver().getId()).findFirst().get();
 		Player playerGuesser = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGuesser().getId()).findFirst().get();
 		String secretWord = hangManTurn.getSecreteWord();
+		hangedManService.separateSecretWordInLine(secretWord);
 		hangManTurnService = new HangManTurnService(playerGiver, playerGuesser, secretWord);
 		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
 	}
@@ -35,6 +36,7 @@ public class HangManTurnController {
 		boolean finished = hangManTurn.isFinished();
 		boolean hangedMan = hangManTurn.isHangedMan();
 		hangManTurnService.updateTurn(turnId, finished, hangedMan);
+
 		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
 	}
 
