@@ -31,7 +31,7 @@ public class PlayerService {
 	TypePlayer typePlayer = new TypePlayer();
 
 
-	public  void createPlayer(int id,String name, TypePlayer typePlayer) {
+	public void createPlayer(int id, String name, TypePlayer typePlayer) {
 		Player p = new Player();
 		p.setId(id);
 		p.setName(name);
@@ -43,20 +43,43 @@ public class PlayerService {
 						Player.getId() + " " + Player.getName() + " " + Player.getTypePlayer().getName()));
 	}
 
+	public Player getPlayerById(int id){
+		Player p = new Player();
+
+		for (int i=0; i<listOfPlayers.size(); i++){
+			if (listOfPlayers.get(i).getId()==id){
+				p = listOfPlayers.get(i);
+			}
+		}
+		return p;
+	}
+
+	public void updatePlayer(Player playerUpdated){
+		listOfPlayers.stream().filter(e -> e.getId() == playerUpdated.getId()).forEach(e->{
+			e.setName(playerUpdated.getName());
+			e.getTypePlayer();
+		});
+		System.out.println("Player was updated successfully");
+	}
 
   public void deletePlayer(String name) {
 		player = getPlayerByName(name);
 		listOfPlayers.remove(player);
-
   }
 
+  public String getListOfPlayers(){
+		String list = "";
+		for (int i = 0; i<listOfPlayers.size(); i++){
+			list = list + listOfPlayers.get(i).toString() + "\n";
+		}
+		return list;
+  }
 
 	public Player getPlayerByName(String name) {
 		Player player = new Player();
 		player = listOfPlayers.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findFirst().get();
 		return player;
 	}
-
 
 	public TypePlayer getTypePlayer(String name) {
 		TypePlayer typePlayer = new TypePlayer();
