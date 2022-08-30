@@ -1,9 +1,10 @@
 package com.example.backendproject.controller.hangman.hangmanservice;
 
 import com.example.backendproject.model.HangManTurn;
+import org.springframework.stereotype.Service;
 
 
-
+@Service
 public class HangedManService {
 
 	public static char[] secretWordSeparatedByLine;

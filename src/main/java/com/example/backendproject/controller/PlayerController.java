@@ -3,6 +3,7 @@ package com.example.backendproject.controller;
 import com.example.backendproject.controller.playerservice.PlayerService;
 import com.example.backendproject.model.Player;
 import com.example.backendproject.model.TypePlayer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/app/v1")
 public class PlayerController {
 
-	PlayerService playerService = new PlayerService();
-	TypePlayer typePlayer = new TypePlayer();
+	@Autowired
+	PlayerService playerService;
+
 	@PostMapping("/createPlayer")
 	public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+		TypePlayer typePlayer = new TypePlayer();
 		Player newPlayer = new Player();
 		String name = player.getName();
 		int id = player.getId();

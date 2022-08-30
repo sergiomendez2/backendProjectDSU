@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class HangManTurnService {
 	HangManTurn turn;
 	StatisticService statisticService;
 	public static List<HangManTurn> turnList = new ArrayList<>();
-	public HangManTurnService(Player playerGiver, Player playerGuesser, String SecretWord) {
+	public void hangManTurn(Player playerGiver, Player playerGuesser, String SecretWord) {
 		turn = new HangManTurn();
 		turn.setId_turn(turnList.size() + 1);
 		turn.setPlayerGiver(playerGiver);

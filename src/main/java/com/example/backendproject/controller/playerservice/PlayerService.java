@@ -2,10 +2,12 @@ package com.example.backendproject.controller.playerservice;
 
 import com.example.backendproject.model.Player;
 import com.example.backendproject.model.TypePlayer;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class PlayerService {
 
 	public PlayerService() {
@@ -37,10 +39,6 @@ public class PlayerService {
 		p.setName(name);
 		p.setTypePlayer(typePlayer);
 		listOfPlayers.add(p);
-		listOfPlayers
-				.stream()
-				.forEach(Player -> System.out.println(
-						Player.getId() + " " + Player.getName() + " " + Player.getTypePlayer().getName()));
 	}
 
 	public Player getPlayerById(int id){
