@@ -13,13 +13,12 @@ public class HangManTurnService {
 	public static List<HangManTurn> turnList = new ArrayList<>();
 	public HangManTurnService(Player playerGiver, Player playerGuesser, String SecretWord) {
 		turn = new HangManTurn();
-		int id = turnList.size() + 1;
+		turn.setId_turn(turnList.size() + 1);
 		turn.setPlayerGiver(playerGiver);
 		turn.setPlayerGuesser(playerGuesser);
 		turn.setFinished(false);
 		turn.setSecreteWord(SecretWord);
 		turn.setHangedMan(false);
-		turn.setId_turn(id);
 		turnList.add(turn);
 	}
 	public HangManTurn getTurnById(int id) {

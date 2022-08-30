@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 public class HangedManService {
 
 	public static char[] secretWordSeparatedByLine;
-	HangedManService hangedManService = new HangedManService();
 	public Boolean compareLetterToSecretWord(char letter, HangManTurn HangManTurn){
 		String word = HangManTurn.getSecreteWord();
 		boolean correct = false;
