@@ -8,15 +8,14 @@ import com.example.backendproject.model.HangManTurn;
 import com.example.backendproject.model.Player;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/app/v1")
 public class HangManTurnController {
 
 	HangManTurnService hangManTurnService;
-	HangedManService hangedManService = new HangedManService();
-	int Max_attempts = 8;
+	HangedManService hangedManService;
 	Player player = new Player();
 
 	@PostMapping("/startGame")
@@ -24,6 +23,8 @@ public class HangManTurnController {
 		Player playerGiver = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGiver().getId()).findFirst().get();
 		Player playerGuesser = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGuesser().getId()).findFirst().get();
 		String secretWord = hangManTurn.getSecreteWord();
+		hangedManService = new HangedManService();
+		hangedManService.separateSecretWordInLine(secretWord);
 		hangManTurnService = new HangManTurnService(playerGiver, playerGuesser, secretWord);
 		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
 	}
