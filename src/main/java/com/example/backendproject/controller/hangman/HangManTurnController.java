@@ -30,6 +30,11 @@ public class HangManTurnController {
 	}
 
 
+	@GetMapping("/getWord")
+	public ResponseEntity<char[]> getWord(){
+		return new ResponseEntity<>(HangedManService.secretWordSeparatedByLine, HttpStatus.OK);
+	}
+
 	@PutMapping("/updateTurn")
 	public ResponseEntity<HangManTurn> updateTurn(@RequestBody HangManTurn hangManTurn) {
 		int turnId = hangManTurn.getId_turn();

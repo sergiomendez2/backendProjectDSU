@@ -1,7 +1,7 @@
 package com.example.backendproject.controller.hangman.hangmanservice;
 
 import com.example.backendproject.model.HangManTurn;
-import org.springframework.stereotype.Service;
+
 
 
 public class HangedManService {
