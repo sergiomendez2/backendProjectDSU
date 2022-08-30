@@ -28,4 +28,13 @@ public class Player {
 	public void setTypePlayer(TypePlayer typePlayer) {
 		this.typePlayer = typePlayer;
 	}
+
+	@Override
+	public String toString() {
+		return "Player {" +
+				"Id: " + id +
+				", Name: '" + name + '\'' +
+				", TypePlayer: " + typePlayer.getName() +
+				'}';
+	}
 }
