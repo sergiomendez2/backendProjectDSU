@@ -12,9 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/app/v1")
-
 public class StatisticsController {
     @Autowired
     StatisticService statisticService;
@@ -28,4 +29,9 @@ public class StatisticsController {
     public ResponseEntity<String> getStatisticsByTypeGame(@PathVariable TypeGame type){
         return new ResponseEntity<>(statisticService.showStatisticsByTypeGame(type), HttpStatus.OK);
     }
+
+	@GetMapping("/getStatistics/hangmanGame")
+	public ResponseEntity<String> getStatisticsHangmanGame(){
+		return new ResponseEntity<>(statisticService.showStatisticHangMan(), HttpStatus.OK);
+	}
 }

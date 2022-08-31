@@ -34,9 +34,10 @@ public class StatisticService {
 		stat.setId_hangmanTurn(hangManTurn.getId_turn());
 	}
 
-	public void showStatisticHangMan(){
+	public String showStatisticHangMan(){
 		//show statistic for hangman
 	 Set<Statistic> stat = statistics.stream().filter(s -> s.getTypeGame() == TypeGame.HANGMAN).collect(Collectors.toSet());
+	  return stat.toString();
 
 	}
 
