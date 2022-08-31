@@ -1,5 +1,4 @@
-FROM openjdk:8
+FROM openjdk:11
 VOLUME /tmp
-EXPOSE 9090
-ADD target/backendProject.jar backendProject.jar
-ENTRYPOINT  ["java", "-jar", "/backendProject.jar"]
+ADD target/backendProject-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT  ["java", "-jar", "/app.jar"]

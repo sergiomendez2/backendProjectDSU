@@ -1,6 +1,8 @@
 package com.example.backendproject.controller;
 
-public class StatisticsController {
+import org.springframework.web.bind.annotation.RestController;
 
+
+public class StatisticsController {
 
 }

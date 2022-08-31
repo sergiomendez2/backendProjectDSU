@@ -19,7 +19,7 @@ public class HangManTurnController {
 	HangManTurnService hangManTurnService;
 	@Autowired
 	HangedManService hangedManService;
-	Player player = new Player();
+
 
 	@PostMapping("/startGame")
 	public ResponseEntity<HangManTurn> startGame(@RequestBody HangManTurn hangManTurn) {
