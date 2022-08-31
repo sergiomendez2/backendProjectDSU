@@ -55,4 +55,14 @@ public class Statistic {
 	public void setId_hangmanTurn(int id_hangmanTurn) {
 		this.id_hangmanTurn = id_hangmanTurn;
 	}
+
+	@Override
+	public String toString() {
+		return "Statistics{" +
+				"Id Statistic: " + idStatistic +
+				", Winner: " + Winner +
+				", Loser: " + Loser +
+				", TypeGame: " + TypeGame +
+				'}';
+	}
 }

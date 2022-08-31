@@ -17,8 +17,11 @@ public class PlayerController {
 
 	@PostMapping("/createPlayer")
 	public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+<<<<<<< HEAD
 		TypePlayer typePlayer = new TypePlayer();
 		Player newPlayer = new Player();
+=======
+>>>>>>> b4007ad (Adding updates for statistics)
 		String name = player.getName();
 		int id = player.getId();
 		typePlayer = playerService.getTypePlayer(player.getTypePlayer().getName());

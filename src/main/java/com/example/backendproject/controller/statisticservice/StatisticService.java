@@ -15,6 +15,8 @@ public class StatisticService {
 
 	public static List<Statistic> statistics = new ArrayList<>();
 	TypeGame typeGame = TypeGame.HANGMAN;
+	TypeGame typeGame2 = TypeGame.TTT;
+
 	public void saveStatistic(HangManTurn hangManTurn) {
 		Statistic stat = new Statistic();
 		stat.setIdStatistic(statistics.size() + 1);
@@ -32,10 +34,30 @@ public class StatisticService {
 		stat.setId_hangmanTurn(hangManTurn.getId_turn());
 	}
 
+<<<<<<< HEAD
 	public void showStatisticHangMan(){
 		//show statistic for hangman
 	 Set<Statistic> stat = statistics.stream().filter(s -> s.getTypeGame() == TypeGame.HANGMAN).collect(Collectors.toSet());
 
 	}
 
+=======
+	public String showStatistics(){
+		String list = "";
+		for (int i = 0; i<statistics.size(); i++){
+			list = list + statistics.toString() + "\n";
+		}
+		return list;
+	}
+
+	public String showStatisticsByTypeGame(TypeGame type){
+		String list = "";
+		for (int i=0; i<statistics.size(); i++){
+			if(statistics.get(i).getTypeGame()==type){
+				list = list + statistics.get(i).toString() + "\n";
+			}
+		}
+		return list;
+	}
+>>>>>>> b4007ad (Adding updates for statistics)
 }
