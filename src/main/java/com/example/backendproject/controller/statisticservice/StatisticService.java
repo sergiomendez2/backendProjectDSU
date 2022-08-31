@@ -34,14 +34,12 @@ public class StatisticService {
 		stat.setId_hangmanTurn(hangManTurn.getId_turn());
 	}
 
-<<<<<<< HEAD
 	public void showStatisticHangMan(){
 		//show statistic for hangman
 	 Set<Statistic> stat = statistics.stream().filter(s -> s.getTypeGame() == TypeGame.HANGMAN).collect(Collectors.toSet());
 
 	}
 
-=======
 	public String showStatistics(){
 		String list = "";
 		for (int i = 0; i<statistics.size(); i++){
@@ -59,5 +57,4 @@ public class StatisticService {
 		}
 		return list;
 	}
->>>>>>> b4007ad (Adding updates for statistics)
 }
