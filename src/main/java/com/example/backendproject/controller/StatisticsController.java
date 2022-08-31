@@ -1,5 +1,6 @@
 package com.example.backendproject.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/app/v1")
 
 public class StatisticsController {
-    StatisticService statisticService = new StatisticService();
+    @Autowired
+    StatisticService statisticService;
 
     @GetMapping("/getStatisticList")
     public ResponseEntity<String> getStatistics(){
