@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/app/v1")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class PlayerController {
 
 	@Autowired
@@ -29,10 +28,10 @@ public class PlayerController {
 		return new ResponseEntity<>(player, HttpStatus.OK);
 	}
 
-	@PostMapping("/updatePlayer")
-	public ResponseEntity<Player> updatePlayer(@RequestBody Player player){
+	@PutMapping("/updatePlayer")
+	public ResponseEntity<String> updatePlayer(@RequestBody Player player){
 		playerService.updatePlayer(player);
-		return new ResponseEntity<>(player, HttpStatus.OK);
+		return new ResponseEntity<>("Player updated", HttpStatus.OK);
 	}
 
 	@DeleteMapping("/deletePlayer/{name}")

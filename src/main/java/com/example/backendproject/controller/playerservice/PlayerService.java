@@ -53,10 +53,14 @@ public class PlayerService {
 	}
 
 	public void updatePlayer(Player playerUpdated){
-		listOfPlayers.stream().filter(e -> e.getId() == playerUpdated.getId()).forEach(e->{
-			e.setName(playerUpdated.getName());
-			e.getTypePlayer();
-		});
+		TypePlayer typePlayer = new TypePlayer();
+		Player p = new Player();
+		typePlayer = TypePlayer.listOfTypesPlayer.stream().filter(t -> t.getId() == playerUpdated.getTypePlayer().getId()).findFirst().get();
+		p = listOfPlayers.stream().filter(t -> t.getId() == playerUpdated.getId()).findFirst().get();
+
+		p.setName(playerUpdated.getName());
+		p.setTypePlayer(typePlayer);
+
 		System.out.println("Player was updated successfully");
 	}
 
