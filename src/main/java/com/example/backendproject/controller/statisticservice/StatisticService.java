@@ -44,7 +44,7 @@ public class StatisticService {
 	public String showStatistics(){
 		String list = "";
 		for (int i = 0; i<statistics.size(); i++){
-			list = list + statistics.toString() + "\n";
+			list = list + statistics.get(i).toString() + "\n";
 		}
 		return list;
 	}

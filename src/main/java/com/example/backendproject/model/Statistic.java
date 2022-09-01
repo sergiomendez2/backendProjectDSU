@@ -60,8 +60,8 @@ public class Statistic {
 	public String toString() {
 		return "Statistics{" +
 				"Id Statistic: " + idStatistic +
-				", Winner: " + Winner +
-				", Loser: " + Loser +
+				", Winner: " + Winner.getName() +
+				", Loser: " + Loser.getName() +
 				", TypeGame: " + TypeGame +
 				'}';
 	}
