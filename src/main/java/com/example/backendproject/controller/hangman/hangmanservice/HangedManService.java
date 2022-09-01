@@ -37,10 +37,15 @@ public class HangedManService {
 	}
 
 	public  boolean isSecretWordSeparatedByLine() {
-		for(char letter : secretWordSeparatedByLine) {
-			if(letter == '_') return true;
+		try {
+			for (int i = 0; i < secretWordSeparatedByLine.length; i++) {
+				if (secretWordSeparatedByLine[i] == '_') {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			return true;
 		}
 		return false;
 	}
-
 }
