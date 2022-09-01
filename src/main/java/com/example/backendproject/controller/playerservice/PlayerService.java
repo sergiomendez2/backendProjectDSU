@@ -65,12 +65,12 @@ public class PlayerService {
 		listOfPlayers.remove(player);
   }
 
-  public String getListOfPlayers(){
-		String list = "";
+  public List<Player>  getListOfPlayers(){
+		List<Player> players = new ArrayList<>();
 		for (int i = 0; i<listOfPlayers.size(); i++){
-			list = list + listOfPlayers.get(i).toString() + "\n";
+			players.add(listOfPlayers.get(i));
 		}
-		return list;
+		return players;
   }
 
 	public Player getPlayerByName(String name) {

@@ -3,22 +3,24 @@ package com.example.backendproject.controller.hangman;
 import com.example.backendproject.controller.hangman.hangmanservice.HangManTurnService;
 import com.example.backendproject.controller.hangman.hangmanservice.HangedManService;
 import com.example.backendproject.model.HangManTurn;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/app/v1")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class HangedManController {
 
+	@Autowired
     HangedManService hangedManService;
-	@GetMapping("/guessLetter/{letter}")
-	public ResponseEntity<char[]> guessLetter(@PathVariable String letter, @RequestBody HangManTurn hangManTurn) {
+	@PostMapping("/guessLetter/{letter}")
+	public ResponseEntity<Boolean> guessLetter(@PathVariable String letter, @RequestBody HangManTurn hangManTurn) {
 		char letterGuessed = letter.charAt(0);
 		HangManTurn hangManTurnGuessed = HangManTurnService.turnList.stream().filter(turn -> turn.getId_turn() == hangManTurn.getId_turn()).findFirst().get();
 		hangedManService= new HangedManService();
-		hangedManService.compareLetterToSecretWord(letterGuessed, hangManTurnGuessed);
-		return new ResponseEntity <> (HangedManService.secretWordSeparatedByLine, HttpStatus.OK);
+		return new ResponseEntity <> (hangedManService.compareLetterToSecretWord(letterGuessed, hangManTurnGuessed), HttpStatus.OK);
 	}
 
 	@GetMapping("/notFinished")

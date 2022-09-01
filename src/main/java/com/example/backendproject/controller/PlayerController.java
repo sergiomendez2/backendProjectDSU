@@ -8,8 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/app/v1")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 public class PlayerController {
 
 	@Autowired
@@ -51,7 +54,7 @@ public class PlayerController {
 	}
 
 	@GetMapping("/getListOfPlayers")
-	public ResponseEntity<String> getListOfPlayers(){
-		return new ResponseEntity<>(playerService.getListOfPlayers(), HttpStatus.OK);
+	public List<Player> getListOfPlayers(){
+		return playerService.getListOfPlayers();
 	}
 }
