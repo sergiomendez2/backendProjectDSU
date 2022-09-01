@@ -22,7 +22,7 @@ public class HangedManController {
 		return new ResponseEntity <> (hangedManService.compareLetterToSecretWord(letterGuessed, hangManTurnGuessed), HttpStatus.OK);
 	}
 
-	@GetMapping("/StillContainsNotWinner")
+	@GetMapping("/StillNotWinner")
 	public Boolean checkIfFinished() {
 		hangedManService= new HangedManService();
 		boolean notfinished = hangedManService.isSecretWordSeparatedByLine();
