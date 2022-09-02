@@ -4,9 +4,9 @@ import com.example.backendproject.model.TTTTurn;
 
 public class tttService {
 
-	public boolean isTTT(){
+	/*public boolean isTTT(){
 //turn
 	}
 	return false;
-
+*/
 }
