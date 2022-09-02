@@ -1,7 +1,7 @@
 package com.example.backendproject.controller.hangman.hangmanservice.hagmanrestservice;
 
-import com.example.backendproject.controller.hangman.HangedManController;
-import com.example.backendproject.controller.hangman.HangManTurnController;
+import com.example.backendproject.controller.hangman.tttController;
+import com.example.backendproject.controller.hangman.tttTurnController;
 import com.example.backendproject.model.Player;
 import com.example.backendproject.model.TypePlayer;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 public class HangManRestService {
 
 
-	HangManTurnController turnController;
-	HangedManController hangedManController;
+	tttTurnController turnController;
+	tttController hangedManController;
 
 	Player player = new Player();
 	TypePlayer typePlayer = new TypePlayer();

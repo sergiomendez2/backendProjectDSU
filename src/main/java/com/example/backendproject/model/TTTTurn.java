@@ -58,6 +58,7 @@ public class TTTTurn {
 		isDraw = draw;
 	}
 
+	/*
 	public int getMovements_playerX() {
 		return movements_playerX;
 	}
@@ -73,4 +74,5 @@ public class TTTTurn {
 	public void setMovements_playerO(int movements_playerO) {
 		this.movements_playerO = movements_playerO;
 	}
+	*/
 }

@@ -6,7 +6,6 @@ import com.example.backendproject.controller.hangman.hangmanservice.HangedManSer
 import com.example.backendproject.controller.playerservice.PlayerService;
 import com.example.backendproject.model.HangManTurn;
 import com.example.backendproject.model.Player;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +14,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/app/v1")
 public class HangManTurnController {
 
-	@Autowired
 	HangManTurnService hangManTurnService;
-	@Autowired
 	HangedManService hangedManService;
-
+	Player player = new Player();
 
 	@PostMapping("/startGame")
 	public ResponseEntity<HangManTurn> startGame(@RequestBody HangManTurn hangManTurn) {
 		Player playerGiver = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGiver().getId()).findFirst().get();
 		Player playerGuesser = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGuesser().getId()).findFirst().get();
 		String secretWord = hangManTurn.getSecreteWord();
+		hangedManService = new HangedManService();
 		hangedManService.separateSecretWordInLine(secretWord);
-		hangManTurnService.hangManTurn(playerGiver, playerGuesser, secretWord);
+		hangManTurnService = new HangManTurnService(playerGiver, playerGuesser, secretWord);
 		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
 	}
 
