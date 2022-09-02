@@ -1,10 +1,5 @@
 package com.example.backendproject.controller.ttt;
 
-import com.example.backendproject.controller.ttt.tttservice.tttTurnService;
-import com.example.backendproject.controller.ttt.tttservice.tttService;
-import com.example.backendproject.model.TTTTurn;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

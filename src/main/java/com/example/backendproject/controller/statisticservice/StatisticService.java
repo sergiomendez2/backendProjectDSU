@@ -2,6 +2,7 @@ package com.example.backendproject.controller.statisticservice;
 
 import com.example.backendproject.model.HangManTurn;
 import com.example.backendproject.model.Statistic;
+import com.example.backendproject.model.TTTTurn;
 import com.example.backendproject.model.TypeGame;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class StatisticService {
 
 	public static List<Statistic> statistics = new ArrayList<>();
 	TypeGame typeGame = TypeGame.HANGMAN;
+	TypeGame typeGame2 = TypeGame.TicTacToe;
 	public void saveStatistic(HangManTurn hangManTurn) {
 		Statistic stat = new Statistic();
 		stat.setIdStatistic(statistics.size() + 1);
@@ -26,6 +28,23 @@ public class StatisticService {
 			stat.setLoser(hangManTurn.getPlayerGuesser());
 		}
 		stat.setTypeGame(typeGame);
+	}
+
+
+	public void saveStatisticTictacToe(TTTTurn tttTurn) {
+		Statistic stat = new Statistic();
+		stat.setIdStatistic(statistics.size() + 1);
+		stat.setId_tttTurn(tttTurn.getId_turn());
+
+		if(tttTurn.getId_playerO().getId() ==tttTurn.getWinner().getId()){
+			stat.setWinner(tttTurn.getId_playerO());
+			stat.setLoser(tttTurn.getId_playerX());
+		}
+		else {
+			stat.setWinner(tttTurn.getId_playerX());
+			stat.setLoser(tttTurn.getId_playerO());
+		}
+		stat.setTypeGame(typeGame2);
 	}
 
 	public String showStatistics(){
