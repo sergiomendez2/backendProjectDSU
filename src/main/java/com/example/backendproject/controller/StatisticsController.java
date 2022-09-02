@@ -30,10 +30,11 @@ public class StatisticsController {
 		if(typeName.equalsIgnoreCase("HangMan")){
 			typeGame = TypeGame.HANGMAN;
 		}else if(typeName.equalsIgnoreCase("TicTacToe")){
-			typeGame = TypeGame.TTT;
+			typeGame = TypeGame.TicTacToe;
 		}
         return statisticService.showStatisticsByTypeGame(typeGame);
     }
+
 
 
 }
