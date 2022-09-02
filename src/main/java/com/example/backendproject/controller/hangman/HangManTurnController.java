@@ -1,8 +1,8 @@
 package com.example.backendproject.controller.hangman;
 
 
-import com.example.backendproject.controller.hangman.hangmanservice.HangManTurnService;
-import com.example.backendproject.controller.hangman.hangmanservice.HangedManService;
+import com.example.backendproject.controller.hangman.hangmanservice.tttTurnService;
+import com.example.backendproject.controller.hangman.hangmanservice.tttService;
 import com.example.backendproject.controller.playerservice.PlayerService;
 import com.example.backendproject.model.HangManTurn;
 import com.example.backendproject.model.Player;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/app/v1")
 public class HangManTurnController {
 
-	HangManTurnService hangManTurnService;
-	HangedManService hangedManService;
+	tttTurnService hangManTurnService;
+	tttService hangedManService;
 	Player player = new Player();
 
 	@PostMapping("/startGame")
@@ -23,16 +23,16 @@ public class HangManTurnController {
 		Player playerGiver = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGiver().getId()).findFirst().get();
 		Player playerGuesser = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == hangManTurn.getPlayerGuesser().getId()).findFirst().get();
 		String secretWord = hangManTurn.getSecreteWord();
-		hangedManService = new HangedManService();
+		hangedManService = new tttService();
 		hangedManService.separateSecretWordInLine(secretWord);
-		hangManTurnService = new HangManTurnService(playerGiver, playerGuesser, secretWord);
+		hangManTurnService = new tttTurnService(playerGiver, playerGuesser, secretWord);
 		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
 	}
 
 
 	@GetMapping("/getWord")
 	public ResponseEntity<char[]> getWord(){
-		return new ResponseEntity<>(HangedManService.secretWordSeparatedByLine, HttpStatus.OK);
+		return new ResponseEntity<>(tttService.secretWordSeparatedByLine, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateTurn")

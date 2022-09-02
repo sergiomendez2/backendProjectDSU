@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/app/v1")
 public class HangedManController {
 
-    HangedManService hangedManService;
+	HangedManService hangedManService;
 	@GetMapping("/guessLetter/{letter}")
 	public ResponseEntity<char[]> guessLetter(@PathVariable String letter, @RequestBody HangManTurn hangManTurn) {
 		char letterGuessed = letter.charAt(0);
