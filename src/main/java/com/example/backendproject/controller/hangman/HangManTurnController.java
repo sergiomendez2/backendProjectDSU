@@ -28,8 +28,8 @@ public class HangManTurnController {
 		String secretWord = hangManTurn.getSecreteWord();
 		hangedManService = new HangedManService();
 		hangedManService.separateSecretWordInLine(secretWord);
-		hangManTurnService.hangManTurn(playerGiver, playerGuesser, secretWord);
-		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
+		HangManTurn turnedCreated = hangManTurnService.hangManTurn(playerGiver, playerGuesser, secretWord);
+		return new ResponseEntity<>(turnedCreated, HttpStatus.OK);
 	}
 
 
@@ -44,6 +44,7 @@ public class HangManTurnController {
 		boolean finished = hangManTurn.isFinished();
 		boolean hangedMan = hangManTurn.isHangedMan();
 		hangManTurnService.updateTurn(turnId, finished, hangedMan);
+		HangedManService.secretWordSeparatedByLine = null;
 		return new ResponseEntity<>(hangManTurn, HttpStatus.OK);
 	}
 

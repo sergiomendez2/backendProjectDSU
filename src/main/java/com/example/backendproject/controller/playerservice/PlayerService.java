@@ -42,14 +42,15 @@ public class PlayerService {
 	}
 
 	public Player getPlayerById(int id){
-		Player p = new Player();
-
-		for (int i=0; i<listOfPlayers.size(); i++){
-			if (listOfPlayers.get(i).getId()==id){
-				p = listOfPlayers.get(i);
-			}
+		try{
+			Player p = new Player();
+			p = listOfPlayers.stream().filter(t -> t.getId() == id).findFirst().get();
+			return p;
 		}
-		return p;
+		catch (Exception e){
+			return null;
+		}
+
 	}
 
 	public void updatePlayer(Player playerUpdated){
@@ -64,8 +65,8 @@ public class PlayerService {
 		System.out.println("Player was updated successfully");
 	}
 
-  public void deletePlayer(String name) {
-		player = getPlayerByName(name);
+  public void deletePlayer(int id) {
+		player = getPlayerById(id);
 		listOfPlayers.remove(player);
   }
 

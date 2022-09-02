@@ -18,14 +18,21 @@ public class PlayerController {
 	PlayerService playerService;
 
 	@PostMapping("/createPlayer")
-	public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+	public ResponseEntity<String> createPlayer(@RequestBody Player player) {
 		TypePlayer typePlayer = new TypePlayer();
 		Player newPlayer = new Player();
 		String name = player.getName();
 		int id = player.getId();
 		typePlayer = playerService.getTypePlayer(player.getTypePlayer().getName());
-		playerService.createPlayer(id,name, typePlayer);
-		return new ResponseEntity<>(player, HttpStatus.OK);
+		Player existingPlayer;
+		existingPlayer = playerService.getPlayerById(id);
+		if(existingPlayer != null){
+			return new ResponseEntity<String>("Player already exists", HttpStatus.BAD_REQUEST);
+		}else{
+			playerService.createPlayer(id,name, typePlayer);
+		}
+
+		return new ResponseEntity<>("Player Created", HttpStatus.OK);
 	}
 
 	@PutMapping("/updatePlayer")
@@ -34,9 +41,9 @@ public class PlayerController {
 		return new ResponseEntity<>("Player updated", HttpStatus.OK);
 	}
 
-	@DeleteMapping("/deletePlayer/{name}")
-	public ResponseEntity<String> deletePlayer(@PathVariable String name) {
-	 	playerService.deletePlayer(name);
+	@DeleteMapping("/deletePlayer/{id}")
+	public ResponseEntity<String> deletePlayer(@PathVariable int id) {
+	 	playerService.deletePlayer(id);
 		return new ResponseEntity<>("Player deleted", HttpStatus.OK);
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StatisticService {
@@ -28,6 +29,7 @@ public class StatisticService {
 			stat.setLoser(hangManTurn.getPlayerGuesser());
 		}
 		stat.setTypeGame(typeGame);
+		statistics.add(stat);
 	}
 
 
@@ -45,21 +47,19 @@ public class StatisticService {
 			stat.setLoser(tttTurn.getId_playerO());
 		}
 		stat.setTypeGame(typeGame2);
+		statistics.add(stat);
+
 	}
 
-	public String showStatistics(){
-		String list = "";
-		for (int i = 0; i<statistics.size(); i++){
-			list = list + statistics.get(i).toString() + "\n";
-		}
-		return list;
+	public List<Statistic> showStatistics(){
+		return new ArrayList<Statistic>(statistics);
 	}
 
 	public List<Statistic> showStatisticsByTypeGame(TypeGame type){
 		List<Statistic> stat = new ArrayList<>();
-		for (int i = 0; i<statistics.size(); i++){
-			if (statistics.get(i).getTypeGame() == type){
-				stat.add(statistics.get(i));
+		for (Statistic statistic : statistics) {
+			if (statistic.getTypeGame() == type) {
+				stat.add(statistic);
 			}
 		}
 		return stat;

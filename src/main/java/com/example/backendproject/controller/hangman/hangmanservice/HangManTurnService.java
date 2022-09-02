@@ -13,7 +13,7 @@ public class HangManTurnService {
 	HangManTurn turn;
 	StatisticService statisticService;
 	public static List<HangManTurn> turnList = new ArrayList<>();
-	public void hangManTurn(Player playerGiver, Player playerGuesser, String SecretWord) {
+	public HangManTurn hangManTurn(Player playerGiver, Player playerGuesser, String SecretWord) {
 		turn = new HangManTurn();
 		turn.setId_turn(turnList.size() + 1);
 		turn.setPlayerGiver(playerGiver);
@@ -22,6 +22,8 @@ public class HangManTurnService {
 		turn.setSecreteWord(SecretWord);
 		turn.setHangedMan(false);
 		turnList.add(turn);
+
+		return turn;
 	}
 	public HangManTurn getTurnById(int id) {
 		HangManTurn turn = new HangManTurn();
@@ -38,6 +40,7 @@ public class HangManTurnService {
 		result = turnList.stream().filter(t -> t.getId_turn() == turnId).findFirst().get();
 		statisticService = new StatisticService();
 		statisticService.saveStatistic(result);
+		System.out.println(result);
 	}
 
 }

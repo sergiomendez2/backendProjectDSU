@@ -21,8 +21,8 @@ public class StatisticsController {
     StatisticService statisticService;
 	TypeGame typeGame;
     @GetMapping("/getStatisticList")
-    public ResponseEntity<String> getStatistics(){
-        return new ResponseEntity<>(statisticService.showStatistics(), HttpStatus.OK);
+    public List<Statistic> getStatistics(){
+        return statisticService.showStatistics();
     }
 
     @GetMapping("/getStatisticsByTypeGame/{typeName}")
