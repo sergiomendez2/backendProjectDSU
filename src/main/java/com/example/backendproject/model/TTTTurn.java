@@ -3,12 +3,28 @@ package com.example.backendproject.model;
 public class TTTTurn {
 	private int id_turn;
 	private boolean finished;
-	private Player id_playerX;
-	private Player id_playerO;
+	private Player playerX;
+	private Player playerO;
 	private Player winner;
 	private boolean isDraw;
 	private int movements_playerX;
 	private int movements_playerO;
+
+	public Player getPlayerX() {
+		return playerX;
+	}
+
+	public void setPlayerX(Player playerX) {
+		this.playerX = playerX;
+	}
+
+	public Player getPlayerO() {
+		return playerO;
+	}
+
+	public void setPlayerO(Player playerO) {
+		this.playerO = playerO;
+	}
 
 	public int getId_turn() {
 		return id_turn;
@@ -26,21 +42,6 @@ public class TTTTurn {
 		this.finished = finished;
 	}
 
-	public Player getId_playerX() {
-		return id_playerX;
-	}
-
-	public void setId_playerX(Player id_playerX) {
-		this.id_playerX = id_playerX;
-	}
-
-	public Player getId_playerO() {
-		return id_playerO;
-	}
-
-	public void setId_playerO(Player id_playerO) {
-		this.id_playerO = id_playerO;
-	}
 
 	public Player getWinner() {
 		return winner;

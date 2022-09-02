@@ -38,13 +38,13 @@ public class StatisticService {
 		stat.setIdStatistic(statistics.size() + 1);
 		stat.setId_tttTurn(tttTurn.getId_turn());
 
-		if(tttTurn.getId_playerO().getId() ==tttTurn.getWinner().getId()){
-			stat.setWinner(tttTurn.getId_playerO());
-			stat.setLoser(tttTurn.getId_playerX());
+		if(tttTurn.getPlayerO().getId() ==tttTurn.getWinner().getId()){
+			stat.setWinner(tttTurn.getPlayerO());
+			stat.setLoser(tttTurn.getPlayerX());
 		}
 		else {
-			stat.setWinner(tttTurn.getId_playerX());
-			stat.setLoser(tttTurn.getId_playerO());
+			stat.setWinner(tttTurn.getPlayerX());
+			stat.setLoser(tttTurn.getPlayerO());
 		}
 		stat.setTypeGame(typeGame2);
 		statistics.add(stat);

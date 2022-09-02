@@ -17,13 +17,14 @@ public class tttTurnService {
 	@Autowired
 	StatisticService statisticService;
 	public static List<TTTTurn> tttturnList = new ArrayList<>();
-	public void ticTacToeTurnService(Player playerX, Player player0) {
+	public TTTTurn ticTacToeTurnService(Player playerX, Player player0) {
 		turn = new TTTTurn();
 		turn.setId_turn(tttturnList.size() + 1);
-		turn.setId_playerX(playerX);
-		turn.setId_playerO(player0);
+		turn.setPlayerX(playerX);
+		turn.setPlayerO(player0);
 		turn.setFinished(false);
 		tttturnList.add(turn);
+		return turn;
 	}
 	public TTTTurn getTurnById(int id) {
 		TTTTurn turn = new TTTTurn();
@@ -31,11 +32,13 @@ public class tttTurnService {
 		return turn;
 	}
 
-	public void updateTurn(int turnId, boolean finished, Player winnerPlayer) {
+	public void updateTurn(int turnId, boolean finished, Player winnerPlayer, boolean isDraw) {
 		TTTTurn turn = new TTTTurn();
 		turn  = getTurnById(turnId);
 		turn.setFinished(finished);
 		turn.setWinner(winnerPlayer);
+		turn.setDraw(isDraw);
+
 		TTTTurn result = new TTTTurn();
 		result = tttturnList.stream().filter(t -> t.getId_turn() == turnId).findFirst().get();
 		statisticService = new StatisticService();

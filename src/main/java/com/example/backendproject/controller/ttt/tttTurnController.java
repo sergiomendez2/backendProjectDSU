@@ -17,21 +17,29 @@ public class tttTurnController {
 	@Autowired
 	tttTurnService tttTurnService;
 
+	Player winner;
 
 	@PostMapping("/startGameTTT")
 	public ResponseEntity<TTTTurn> startGame(@RequestBody TTTTurn tttTurn) {
-		Player playerX = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getId_playerX().getId()).findFirst().get();
-		Player player0 = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getId_playerO().getId()).findFirst().get();
-		tttTurnService.ticTacToeTurnService(playerX, player0);
-		return new ResponseEntity<>(tttTurn, HttpStatus.OK);
+		Player playerX = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getPlayerX().getId()).findFirst().get();
+		Player player0 = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getPlayerO().getId()).findFirst().get();
+		TTTTurn turnCreated=tttTurnService.ticTacToeTurnService(playerX, player0);
+		return new ResponseEntity<>(turnCreated, HttpStatus.OK);
 	}
 
 	@PutMapping("/updateTurnTTT")
 	public ResponseEntity<String> updateTurn(@RequestBody TTTTurn tttTurn) {
 		int turnId = tttTurn.getId_turn();
 		boolean finished = tttTurn.isFinished();
-		Player winner = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getWinner().getId()).findFirst().get();
-		tttTurnService.updateTurn(turnId, finished,winner);
+		boolean isDraw = tttTurn.isDraw();
+
+		if(isDraw) {
+			winner = null;
+		}else{
+			winner = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getWinner().getId()).findFirst().get();
+		}
+
+		tttTurnService.updateTurn(turnId, finished, winner, isDraw);
 		return new ResponseEntity<>("Game finished!", HttpStatus.OK);
 	}
 
