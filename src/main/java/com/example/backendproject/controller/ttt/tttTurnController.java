@@ -18,7 +18,7 @@ public class tttTurnController {
 	tttService tttService;
 	Player player = new Player();
 
-	@PostMapping("/startGame")
+	@PostMapping("/startGameTTT")
 	public ResponseEntity<TTTTurn> startGame(@RequestBody TTTTurn tttTurn) {
 		Player playerX = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getId_playerX().getId()).findFirst().get();
 		Player player0 = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getId_playerO().getId()).findFirst().get();
@@ -27,11 +27,11 @@ public class tttTurnController {
 		return new ResponseEntity<>(tttTurn, HttpStatus.OK);
 	}
 
-	@PutMapping("/updateTurn")
+	@PutMapping("/updateTurnTTT")
 	public ResponseEntity<TTTTurn> updateTurn(@RequestBody TTTTurn tttTurn) {
 		int turnId = tttTurn.getId_turn();
 		boolean finished = tttTurn.isFinished();
-		tttTurnService.updateTurn(turnId, finished);
+		/*tttTurnService.updateTurn(turnId, finished);*/
 		return new ResponseEntity<>(tttTurn, HttpStatus.OK);
 	}
 

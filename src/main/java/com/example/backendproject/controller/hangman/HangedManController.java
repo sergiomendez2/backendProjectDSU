@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class HangedManController {
 
     HangedManService hangedManService;
-	@GetMapping("/guessLetter/{letter}")
-	public ResponseEntity<char[]> guessLetter(@PathVariable String letter, @RequestBody HangManTurn hangManTurn) {
+	@PostMapping("/guessLetter/{letter}")
+	public ResponseEntity<Boolean> guessLetter(@PathVariable String letter, @RequestBody HangManTurn hangManTurn) {
 		char letterGuessed = letter.charAt(0);
 		HangManTurn hangManTurnGuessed = HangManTurnService.turnList.stream().filter(turn -> turn.getId_turn() == hangManTurn.getId_turn()).findFirst().get();
 		hangedManService= new HangedManService();
-		hangedManService.compareLetterToSecretWord(letterGuessed, hangManTurnGuessed);
-		return new ResponseEntity <> (HangedManService.secretWordSeparatedByLine, HttpStatus.OK);
+		Boolean exist = hangedManService.compareLetterToSecretWord(letterGuessed, hangManTurnGuessed);
+		return new ResponseEntity <> (exist, HttpStatus.OK);
 	}
 
-	@GetMapping("/notFinished")
+	@GetMapping("/StillNotWinner")
 	public Boolean checkIfFinished() {
 		hangedManService= new HangedManService();
 		boolean notfinished = hangedManService.isSecretWordSeparatedByLine();

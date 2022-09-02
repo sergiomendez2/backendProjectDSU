@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/app/v1")
 public class tttController {
 
-    tttService tttService;
+    /*tttService tttService;
 	@GetMapping("/notFinished")
 	public Boolean checkIfFinished() {
 		tttService= new tttService();
@@ -23,6 +23,6 @@ public class tttController {
 			tttService.secretWordSeparatedByLine = null;
 			return notfinished;
 		}
-	}
+	}*/
 }
 

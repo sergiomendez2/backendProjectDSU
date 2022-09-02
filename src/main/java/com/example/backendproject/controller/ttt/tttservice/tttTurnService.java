@@ -32,7 +32,7 @@ public class tttTurnService {
 		TTTTurn result = new TTTTurn();
 		result = tttturnList.stream().filter(t -> t.getId_turn() == turnId).findFirst().get();
 		statisticService = new StatisticService();
-		statisticService.saveStatistic(result);
+		/*statisticService.saveStatistic(result);*/
 	}
 
 }
