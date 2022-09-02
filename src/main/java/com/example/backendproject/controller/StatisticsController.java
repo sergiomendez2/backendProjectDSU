@@ -19,19 +19,21 @@ import java.util.List;
 public class StatisticsController {
     @Autowired
     StatisticService statisticService;
-
+	TypeGame typeGame;
     @GetMapping("/getStatisticList")
     public ResponseEntity<String> getStatistics(){
         return new ResponseEntity<>(statisticService.showStatistics(), HttpStatus.OK);
     }
 
-    @GetMapping("/getStatisticsByTypeGame/{type}")
-    public ResponseEntity<String> getStatisticsByTypeGame(@PathVariable TypeGame type){
-        return new ResponseEntity<>(statisticService.showStatisticsByTypeGame(type), HttpStatus.OK);
+    @GetMapping("/getStatisticsByTypeGame/{typeName}")
+    public List<Statistic> getStatisticsByTypeGame(@PathVariable String typeName){
+		if(typeName.equalsIgnoreCase("HangMan")){
+			typeGame = TypeGame.HANGMAN;
+		}else if(typeName.equalsIgnoreCase("TicTacToe")){
+			typeGame = TypeGame.TTT;
+		}
+        return statisticService.showStatisticsByTypeGame(typeGame);
     }
 
-	@GetMapping("/getStatistics/hangmanGame")
-	public ResponseEntity<String> getStatisticsHangmanGame(){
-		return new ResponseEntity<>(statisticService.showStatisticHangMan(), HttpStatus.OK);
-	}
+
 }

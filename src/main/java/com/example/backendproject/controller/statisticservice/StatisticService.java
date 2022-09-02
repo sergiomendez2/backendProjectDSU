@@ -32,13 +32,7 @@ public class StatisticService {
 
 		stat.setTypeGame(typeGame);
 		stat.setId_hangmanTurn(hangManTurn.getId_turn());
-	}
-
-	public String showStatisticHangMan(){
-		//show statistic for hangman
-	 Set<Statistic> stat = statistics.stream().filter(s -> s.getTypeGame() == TypeGame.HANGMAN).collect(Collectors.toSet());
-	  return stat.toString();
-
+		statistics.add(stat);
 	}
 
 	public String showStatistics(){
@@ -49,13 +43,13 @@ public class StatisticService {
 		return list;
 	}
 
-	public String showStatisticsByTypeGame(TypeGame type){
-		String list = "";
-		for (int i=0; i<statistics.size(); i++){
-			if(statistics.get(i).getTypeGame()==type){
-				list = list + statistics.get(i).toString() + "\n";
+	public List<Statistic> showStatisticsByTypeGame(TypeGame type){
+		List<Statistic> stat = new ArrayList<>();
+		for (int i = 0; i<statistics.size(); i++){
+			if (statistics.get(i).getTypeGame() == type){
+				stat.add(statistics.get(i));
 			}
 		}
-		return list;
+		return stat;
 	}
 }
