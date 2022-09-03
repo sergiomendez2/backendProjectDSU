@@ -28,7 +28,7 @@ public class tttTurnController {
 	}
 
 	@PutMapping("/updateTurnTTT")
-	public ResponseEntity<String> updateTurn(@RequestBody TTTTurn tttTurn) {
+	public ResponseEntity<TTTTurn> updateTurn(@RequestBody TTTTurn tttTurn) {
 		int turnId = tttTurn.getId_turn();
 		boolean finished = tttTurn.isFinished();
 		boolean isDraw = tttTurn.isDraw();
@@ -39,8 +39,8 @@ public class tttTurnController {
 			winner = PlayerService.listOfPlayers.stream().filter(p -> p.getId() == tttTurn.getWinner().getId()).findFirst().get();
 		}
 
-		tttTurnService.updateTurn(turnId, finished, winner, isDraw);
-		return new ResponseEntity<>("Game finished!", HttpStatus.OK);
+		TTTTurn  turnedFinished = tttTurnService.updateTurn(turnId, finished, winner, isDraw);
+		return new ResponseEntity<>(turnedFinished, HttpStatus.OK);
 	}
 
 }

@@ -5,7 +5,6 @@ import com.example.backendproject.model.TTTTurn;
 import com.example.backendproject.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class tttTurnService {
 		return turn;
 	}
 
-	public void updateTurn(int turnId, boolean finished, Player winnerPlayer, boolean isDraw) {
+	public TTTTurn updateTurn(int turnId, boolean finished, Player winnerPlayer, boolean isDraw) {
 		TTTTurn turn = new TTTTurn();
 		turn  = getTurnById(turnId);
 		turn.setFinished(finished);
@@ -43,6 +42,7 @@ public class tttTurnService {
 		result = tttturnList.stream().filter(t -> t.getId_turn() == turnId).findFirst().get();
 		statisticService = new StatisticService();
 		statisticService.saveStatisticTictacToe(result);
+		return turn;
 	}
 
 }
