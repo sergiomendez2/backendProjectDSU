@@ -19,13 +19,12 @@ public class PlayerController {
 
 	@PostMapping("/createPlayer")
 	public ResponseEntity<String> createPlayer(@RequestBody Player player) {
-		TypePlayer typePlayer = new TypePlayer();
+
 		Player newPlayer = new Player();
 		String name = player.getName();
 		int id = player.getId();
-		typePlayer = playerService.getTypePlayer(player.getTypePlayer().getName());
-		Player existingPlayer;
-		existingPlayer = playerService.getPlayerById(id);
+		TypePlayer typePlayer = playerService.getTypePlayer(player.getTypePlayer().getName());
+		Player existingPlayer = playerService.getPlayerById(id);
 		if(existingPlayer != null){
 			return new ResponseEntity<String>("Player already exists", HttpStatus.BAD_REQUEST);
 		}else{

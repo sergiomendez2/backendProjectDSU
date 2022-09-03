@@ -35,6 +35,4 @@ public class StatisticsController {
         return statisticService.showStatisticsByTypeGame(typeGame);
     }
 
-
-
 }
